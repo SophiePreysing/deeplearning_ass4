@@ -51,13 +51,14 @@ print(tokens)
 
 # Your code here:
 # -----------------------------------------------
-def tokenize(string: str) -> list:
-    t = [i.strip(".,!?:;").lower() for i in string.split()]
+def tokenize(string: str) -> list:   
+    t = ["".join(c for c in w if c.isalnum()).lower()   for w in string.split()]
     token = []                     # it would be quicker to just do: set(t) to remove duplicates
     for word in t:                 # goes through all words
-        if word not in token:      # only add if not already added
+        if word != "" and word not in token:      # only add if not already added
             token.append(word)
-    return sorted(token)          # sorts elements in list alphabetically
+    return token          # note: had to remove sorted(token) bc otherwise run would fail 
+
 
 
 # -----------------------------------------------
