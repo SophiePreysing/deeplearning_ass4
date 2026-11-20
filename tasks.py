@@ -51,14 +51,19 @@ print(tokens)
 
 # Your code here:
 # -----------------------------------------------
-def tokenize(string: str) -> list:   
-    t = ["".join(c for c in w if c.isalnum()).lower()   for w in string.split()]
-    token = []                     # it would be quicker to just do: set(t) to remove duplicates
-    for word in t:                 # goes through all words
-        if word != "" and word not in token:      # only add if not already added
-            token.append(word)
-    return token          # note: had to remove sorted(token) bc otherwise run would fail 
+#def tokenize(string: str) -> list:   
+#    t = ["".join(c for c in w if c.isalnum()).lower()   for w in string.split()]
+#    token = []                     # it would be quicker to just do: set(t) to remove duplicates
+#    for word in t:                 # goes through all words
+#        if word != "" and word not in token:      # only add if not already added
+#            token.append(word)
+#    return token          # note: had to remove sorted(token) bc otherwise run would fail 
 
+def tokenize(string: str) -> list:
+    allowed = set("abcdefghijklmnopqrstuvwxyz0123456789")
+    return "".join(
+        c for c in string.lower() if c in allowed or c in "\n\t "
+    ).split()
 
 
 # -----------------------------------------------
