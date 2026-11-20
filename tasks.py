@@ -127,13 +127,18 @@ word_frequencies2 = {i:word_frequencies[i] for i in word_frequencies if word_fre
 
 # Your code here:
 # -----------------------------------------------
-def token_counts(string: str, k: int = 1) -> dict:
-    words = [i.strip(".,:;?!").lower() for i in string.split()]
-    freq_words = {i: words.count(i) for i in words}
-    k_words = {i:freq_words[i] for i in freq_words if freq_words[i] > k}
-    return k_words
+#def token_counts(string: str, k: int = 1) -> dict:
+#    words = [i.strip(".,:;?!").lower() for i in string.split()]
+#    freq_words = {i: words.count(i) for i in words}
+#    k_words = {i:freq_words[i] for i in freq_words if freq_words[i] > k}
+#    return k_words
 
-print(token_counts("The cat and the dog saw the cat.", 1))
+#print(token_counts("The cat and the dog saw the cat.", 1))
+
+def token_counts(string: str, k: int = 1) -> dict:
+    tokens = tokenize(string)
+    return {token: tokens.count(token) for token in set(tokens) if tokens.count(token) >= k}
+
 
 # test:
 text_hist = {'the': 2, 'quick': 1, 'brown': 1, 'fox': 1, 'jumps': 1, 'over': 1, 'lazy': 1, 'dog': 1}
